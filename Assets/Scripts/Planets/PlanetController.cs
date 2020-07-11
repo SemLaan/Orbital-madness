@@ -40,6 +40,14 @@ public class PlanetController : MonoBehaviour
     }
 
 
+    public void UpdateVelocityAndPosition(Vector2 acceleration)
+    {
+
+        velocity += acceleration * Time.fixedDeltaTime;
+        transform.position = transform.position + (Vector3) velocity * Time.fixedDeltaTime;
+    }
+
+
     private void OnDrawGizmos()
     {
 
