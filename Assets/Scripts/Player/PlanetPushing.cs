@@ -7,16 +7,21 @@ public class PlanetPushing : MonoBehaviour
 
     [Range(0, 100)]
     [SerializeField] private float playerForce = 1;
+    [SerializeField] private Transform environmentParentObject = null;
 
     private Controls controls;
     private bool leftMousePressedLastFrame = false;
+    private bool rightMousePressedLastFrame = false;
+    private Vector2 mousePositionLastFrame = Vector2.zero;
     private Collider2D targetPlanet;
+    private new Transform camera;
 
 
 
     private void Awake()
     {
 
+        camera = Camera.main.transform;
         controls = new Controls();
         controls.Enable();
     }
@@ -26,8 +31,18 @@ public class PlanetPushing : MonoBehaviour
     {
 
         bool leftMousePressed = controls.Gameplay.leftMouse.ReadValue<float>() == 1;
+        bool rightMousePressed = controls.Gameplay.rightMouse.ReadValue<float>() == 1;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(controls.Gameplay.mousePosition.ReadValue<Vector2>());
 
+        // Player panning
+        if (rightMousePressed && rightMousePressedLastFrame)
+        {
+
+            environmentParentObject.position = environmentParentObject.position + (Vector3) mousePosition - (Vector3)mousePositionLastFrame;
+        }
+
+
+        // Player applying force to planets
         if (leftMousePressed && !leftMousePressedLastFrame)
         {
 
@@ -55,5 +70,7 @@ public class PlanetPushing : MonoBehaviour
         }
 
         leftMousePressedLastFrame = leftMousePressed;
+        rightMousePressedLastFrame = rightMousePressed;
+        mousePositionLastFrame = mousePosition;
     }
 }
