@@ -21,22 +21,38 @@ public struct PlanetData
 public class SolarSystemController : MonoBehaviour
 {
 
-    List<GameObject> planets; // All the planet objects
+    List<Transform> planets; // All the planet objects
     List<PlanetData> planetLocations; // Updates every fixed update with all the locations and masses of the planets
+
 
 
     private void Awake()
     {
-        
-        //TODO: grab children
+
+        planets = new List<Transform>();
+        planetLocations = new List<PlanetData>();
+
+        foreach (Transform planet in transform)
+        {
+
+            planets.Add(planet);
+            planetLocations.Add(
+                new PlanetData(planet.position, 
+                        planet.GetComponent<PlanetController>().mass));
+        }
     }
 
 
 
     private void FixedUpdate()
     {
-        
-        //TODO: make list of planet data
+
+        for (int i = 0; i < planets.Count; i++)
+        {
+
+            planetLocations[i] = new PlanetData(planets[i].position, planetLocations[i].mass);
+        }
+
         //TODO: call planets update velocity functions
         //TODO: call planets update position functions
     }
