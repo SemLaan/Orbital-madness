@@ -8,8 +8,9 @@ public class PlanetController : MonoBehaviour
     [SerializeField] private Vector2 initialVelocityDirection = Vector2.one;
     [SerializeField] private float initialVelocityMagnitude = 1;
     [SerializeField] private bool immovable = false;
-
     public float mass;
+
+    [HideInInspector] public Vector2 playerAcceleration;
     private Vector2 velocity;
 
 
@@ -25,6 +26,8 @@ public class PlanetController : MonoBehaviour
     {
 
         Vector2 acceleration = Vector2.zero;
+        acceleration += playerAcceleration;
+        playerAcceleration = Vector2.zero;
 
         foreach (PlanetData planet in planetLocations)
         {
