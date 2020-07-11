@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlanetController : MonoBehaviour
 {
 
-    [SerializeField] private Vector2 initialVelocityDirection;
-    [SerializeField] private float initialVelocityMagnitude;
-    [SerializeField] private bool immovable;
+    [SerializeField] private Vector2 initialVelocityDirection = Vector2.one;
+    [SerializeField] private float initialVelocityMagnitude = 1;
+    [SerializeField] private bool immovable = false;
 
     public float mass;
     private Vector2 velocity;

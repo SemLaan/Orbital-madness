@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialVelocityDirection: {x: -5.16, y: 19.44}
   initialVelocityMagnitude: 2.05
+  immovable: 0
+  mass: 0
 --- !u!212 &1868565829078030973
 SpriteRenderer:
   m_ObjectHideFlags: 0
