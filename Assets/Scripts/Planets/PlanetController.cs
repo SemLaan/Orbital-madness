@@ -8,6 +8,7 @@ public class PlanetController : MonoBehaviour
     [SerializeField] private Vector2 initialVelocityDirection;
     [SerializeField] private float initialVelocityMagnitude;
 
+    [HideInInspector] public float mass;
     private Vector2 velocity;
 
 
