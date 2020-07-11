@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlanetController : MonoBehaviour
 {
 
-    [SerializeField] private Vector2 initialVelocity;
+    [SerializeField] private Vector2 initialVelocityDirection;
+    [SerializeField] private float initialVelocityMagnitude;
 
     private Vector2 velocity;
 
@@ -14,6 +15,9 @@ public class PlanetController : MonoBehaviour
     private void Awake()
     {
 
-        velocity = initialVelocity;
+        velocity = initialVelocityDirection.normalized * initialVelocityMagnitude;
+    }
+
+
     }
 }

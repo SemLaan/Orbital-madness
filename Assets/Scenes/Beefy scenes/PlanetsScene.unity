@@ -215,8 +215,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 952954571}
-  - component: {fileID: 952954570}
   - component: {fileID: 952954569}
+  - component: {fileID: 952954570}
   - component: {fileID: 952954572}
   m_Layer: 0
   m_Name: TestPlanet
@@ -237,6 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb317efc8184e54babafa82a251c94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialVelocityDirection: {x: -5.16, y: 19.44}
+  initialVelocityMagnitude: 2.05
 --- !u!212 &952954570
 SpriteRenderer:
   m_ObjectHideFlags: 0
