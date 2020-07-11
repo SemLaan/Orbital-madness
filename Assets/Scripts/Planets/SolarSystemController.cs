@@ -21,7 +21,9 @@ public struct PlanetData
 public class SolarSystemController : MonoBehaviour
 {
 
-    List<Transform> planets; // All the planet objects
+    [SerializeField] private float gravitationalConstant;
+
+    List<PlanetController> planets; // All the planet objects
     List<PlanetData> planetLocations; // Updates every fixed update with all the locations and masses of the planets
 
 
@@ -29,13 +31,13 @@ public class SolarSystemController : MonoBehaviour
     private void Awake()
     {
 
-        planets = new List<Transform>();
+        planets = new List<PlanetController>();
         planetLocations = new List<PlanetData>();
 
         foreach (Transform planet in transform)
         {
 
-            planets.Add(planet);
+            planets.Add(planet.GetComponent<PlanetController>());
             planetLocations.Add(
                 new PlanetData(planet.position, 
                         planet.GetComponent<PlanetController>().mass));
@@ -50,10 +52,21 @@ public class SolarSystemController : MonoBehaviour
         for (int i = 0; i < planets.Count; i++)
         {
 
-            planetLocations[i] = new PlanetData(planets[i].position, planetLocations[i].mass);
+            planetLocations[i] = new PlanetData(planets[i].transform.position, planetLocations[i].mass);
         }
 
-        //TODO: call planets update velocity functions
-        //TODO: call planets update position functions
+        Vector3[] accelerations = new Vector3[planets.Count];
+
+        for (int i = 0; i < planets.Count; i++)
+        {
+
+            accelerations[i] = planets[i].CalculateAcceleration(planetLocations, gravitationalConstant);
+        }
+
+        for (int i = 0; i < planets.Count; i++)
+        {
+
+            planets[i].UpdateVelocityAndPosition(accelerations[i]);
+        }
     }
 }
