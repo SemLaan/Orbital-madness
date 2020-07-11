@@ -8,7 +8,7 @@ public class PlanetController : MonoBehaviour
     [SerializeField] private Vector2 initialVelocityDirection;
     [SerializeField] private float initialVelocityMagnitude;
 
-    [HideInInspector] public float mass;
+    public float mass;
     private Vector2 velocity;
 
 
@@ -19,6 +19,25 @@ public class PlanetController : MonoBehaviour
         velocity = initialVelocityDirection.normalized * initialVelocityMagnitude;
     }
 
+
+    public Vector3 CalculateAcceleration(List<PlanetData> planetLocations, float gravitationalConstant)
+    {
+
+        Vector2 acceleration = Vector2.zero;
+
+        foreach (PlanetData planet in planetLocations)
+        {
+            // Checking if its this planet
+            if (planet.position == transform.position)
+                continue;
+
+            Vector2 forceDirection = (planet.position - transform.position).normalized;
+            float sqrDistance = (planet.position - transform.position).sqrMagnitude;
+            acceleration += forceDirection * gravitationalConstant * planet.mass / sqrDistance;
+        }
+
+        return acceleration;
+    }
 
 
     private void OnDrawGizmos()
