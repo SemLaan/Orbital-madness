@@ -7,7 +7,9 @@ public class PlanetController : MonoBehaviour
 
     [SerializeField] private Vector2 initialVelocityDirection;
     [SerializeField] private float initialVelocityMagnitude;
+    [SerializeField] private bool immovable;
 
+    public float mass;
     private Vector2 velocity;
 
 
@@ -19,11 +21,48 @@ public class PlanetController : MonoBehaviour
     }
 
 
+    public Vector3 CalculateAcceleration(List<PlanetData> planetLocations, float gravitationalConstant)
+    {
+
+        Vector2 acceleration = Vector2.zero;
+
+        foreach (PlanetData planet in planetLocations)
+        {
+            // Checking if its this planet
+            if (planet.position == transform.position)
+                continue;
+
+            Vector2 forceDirection = (planet.position - transform.position).normalized;
+            float sqrDistance = (planet.position - transform.position).sqrMagnitude;
+            acceleration += forceDirection * gravitationalConstant * planet.mass / sqrDistance;
+        }
+
+        return acceleration;
+    }
+
+
+    public void UpdateVelocityAndPosition(Vector2 acceleration)
+    {
+
+        if (!immovable)
+        {
+
+            velocity += acceleration * Time.fixedDeltaTime;
+            transform.position = transform.position + (Vector3)velocity * Time.fixedDeltaTime;
+        }
+    }
+
 
     private void OnDrawGizmos()
     {
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3)initialVelocityDirection.normalized * initialVelocityMagnitude);
+
+        if (immovable)
+            return;
+        else if (velocity == Vector2.zero)
+            Gizmos.DrawLine(transform.position, transform.position + (Vector3)initialVelocityDirection.normalized * initialVelocityMagnitude);
+        else
+            Gizmos.DrawLine(transform.position, transform.position + (Vector3)velocity);
     }
 }
