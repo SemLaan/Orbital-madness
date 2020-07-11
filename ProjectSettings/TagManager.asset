@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4234682431
+    locked: 0
+  - name: Planets
+    uniqueID: 3167687625
+    locked: 0
