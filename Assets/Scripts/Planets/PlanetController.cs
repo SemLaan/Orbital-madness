@@ -7,6 +7,7 @@ public class PlanetController : MonoBehaviour
 
     [SerializeField] private Vector2 initialVelocityDirection;
     [SerializeField] private float initialVelocityMagnitude;
+    [SerializeField] private bool immovable;
 
     public float mass;
     private Vector2 velocity;
@@ -43,8 +44,12 @@ public class PlanetController : MonoBehaviour
     public void UpdateVelocityAndPosition(Vector2 acceleration)
     {
 
-        velocity += acceleration * Time.fixedDeltaTime;
-        transform.position = transform.position + (Vector3) velocity * Time.fixedDeltaTime;
+        if (!immovable)
+        {
+
+            velocity += acceleration * Time.fixedDeltaTime;
+            transform.position = transform.position + (Vector3)velocity * Time.fixedDeltaTime;
+        }
     }
 
 
@@ -52,6 +57,12 @@ public class PlanetController : MonoBehaviour
     {
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3)initialVelocityDirection.normalized * initialVelocityMagnitude);
+
+        if (immovable)
+            return;
+        else if (velocity == Vector2.zero)
+            Gizmos.DrawLine(transform.position, transform.position + (Vector3)initialVelocityDirection.normalized * initialVelocityMagnitude);
+        else
+            Gizmos.DrawLine(transform.position, transform.position + (Vector3)velocity);
     }
 }
