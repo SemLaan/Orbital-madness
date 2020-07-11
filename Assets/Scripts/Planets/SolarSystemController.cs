@@ -21,7 +21,7 @@ public struct PlanetData
 public class SolarSystemController : MonoBehaviour
 {
 
-    [SerializeField] private float gravitationalConstant;
+    [SerializeField] private float gravitationalConstant = 0;
 
     List<PlanetController> planets; // All the planet objects
     List<PlanetData> planetLocations; // Updates every fixed update with all the locations and masses of the planets
