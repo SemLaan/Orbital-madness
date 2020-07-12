@@ -7,6 +7,7 @@ TagManager:
   - LevelRestarter
   - Planet
   - SoundManager
+  - Timer
   layers:
   - Default
   - TransparentFX
