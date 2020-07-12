@@ -108,7 +108,7 @@ public class PlanetPushing : MonoBehaviour
                 targetPlanet = null;
 
                 if(soundManager != null)
-                    soundManager.PlaySingle(pushSound);
+                    soundManager.RandomizeSfx(pushSound);
             }
 
             lineObject.gameObject.SetActive(false);

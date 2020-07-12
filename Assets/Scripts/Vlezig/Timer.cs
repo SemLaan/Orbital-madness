@@ -9,11 +9,15 @@ public class Timer : MonoBehaviour
     public float timeLeft = 30;
     [SerializeField] private GameObject text = null;
     private int displayTime;
-    private RestartScript restartManager;
+    private RestartScript restartManager = null;
+    private SoundManager soundManager;
+    [SerializeField] private AudioClip victory;
 
     private void Start()
     {
-        restartManager = GameObject.FindGameObjectWithTag("LevelRestarter").GetComponent<RestartScript>();
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        if(GameObject.FindGameObjectWithTag("LevelRestarter"))
+            restartManager = GameObject.FindGameObjectWithTag("LevelRestarter").GetComponent<RestartScript>();
     }
 
     void Update()
@@ -24,8 +28,12 @@ public class Timer : MonoBehaviour
 
         if (timeLeft <= 0)
         {
-            restartManager.getCurrentIndex();
-            SceneManager.LoadScene(2);
+            if (restartManager != null)
+            {
+                soundManager.PlaySingle(victory);
+                restartManager.getCurrentIndex();
+                SceneManager.LoadScene(2);
+            }
         }
 
     }

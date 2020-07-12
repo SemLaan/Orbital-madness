@@ -21,13 +21,17 @@ public class PlanetColission : MonoBehaviour
     private Timer timer;
 
     private int timeOfExplosion;
+
     private new Collider2D collider;
+    private PlanetController controller;
+
 
     private void Start()
     {
         collider = GetComponent<Collider2D>();
         timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        controller = GetComponent<PlanetController>();
 
         if (GameObject.FindGameObjectWithTag("SoundManager") != null)
             soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
@@ -61,7 +65,7 @@ public class PlanetColission : MonoBehaviour
             spriteRenderer.enabled = false;
             
             Vector3 explosionPosition = (collision.transform.position + transform.position)/2;
-            Instantiate(explosion, explosionPosition, Quaternion.identity);
+            Instantiate(explosion, explosionPosition, Quaternion.identity,transform);
 
             if(soundManager!=null)
                 soundManager.PlaySingle(collisionSound);
@@ -71,6 +75,26 @@ public class PlanetColission : MonoBehaviour
 
             countDown = true;
             collider.enabled = false;
+            controller.immovable = true;
         }
+
+        if (collision.gameObject.tag == "Donut")
+        {
+            timeOfExplosion = (int)timer.timeLeft;
+            spriteRenderer.enabled = false;
+
+            Instantiate(explosion, transform.position, Quaternion.identity, transform);
+
+            if (soundManager != null)
+                soundManager.PlaySingle(collisionSound);
+
+            if (restartManager != null)
+                resetter.getCurrentIndex();
+
+            countDown = true;
+            collider.enabled = false;
+            controller.immovable = true;
+        }
+
     }
 }
