@@ -73,7 +73,15 @@ public class PlanetPushing : MonoBehaviour
         {
 
             targetPlanet = Physics2D.OverlapPoint(mousePosition);
-            if (targetPlanet != null)
+
+            if (targetPlanet == null)
+                return;
+            else if (targetPlanet.tag == "tutorialcard")
+            {
+
+                targetPlanet.GetComponent<TutorialCard>().Finish();
+                targetPlanet = null;
+            } else
             {
 
                 lineObject.gameObject.SetActive(true);

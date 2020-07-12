@@ -17,12 +17,27 @@ public class TutorialManager : MonoBehaviour
     {
 
         if (gameTimer.timeLeft <= launchPlanet && !activatedLaunchPlanet)
+        {
+
             launchPlanetCard.SetActive(true);
+            activatedLaunchPlanet = true;
+            Time.timeScale = 0;
+        }
 
         if (gameTimer.timeLeft <= pan && !activatedPanningCard)
+        {
+
             panningCard.SetActive(true);
+            activatedPanningCard = true;
+            Time.timeScale = 0;
+        }
 
         if (gameTimer.timeLeft <= timer && !activatedTimerCard)
+        {
+
             timerCard.SetActive(true);
+            activatedTimerCard = true;
+            Time.timeScale = 0;
+        }
     }
 }
