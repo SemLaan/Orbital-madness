@@ -8,6 +8,7 @@ public class PlanetPushing : MonoBehaviour
     [Range(0, 100)]
     [SerializeField] private float playerForce = 1;
     [SerializeField] private Transform environmentParentObject = null;
+    [SerializeField] private Transform lineObject = null;
 
     private Controls controls;
     private bool leftMousePressedLastFrame = false;
@@ -24,6 +25,25 @@ public class PlanetPushing : MonoBehaviour
         camera = Camera.main.transform;
         controls = new Controls();
         controls.Enable();
+    }
+
+
+    private void PositionArrow(Vector2 mousePosition)
+    {
+
+        // Making the line the right length
+        Vector3 lineScale = lineObject.localScale;
+        lineScale.x = (targetPlanet.transform.position - (Vector3) mousePosition).magnitude;
+        lineObject.localScale = lineScale;
+
+        // Rotating the line
+        Vector2 lineDirection = targetPlanet.transform.position - (Vector3) mousePosition;
+        float lineAngle = Vector2.SignedAngle(Vector2.up, lineDirection);
+        Vector3 currentRotation = lineObject.localRotation.eulerAngles;
+        lineObject.localRotation = Quaternion.Euler(currentRotation.x, currentRotation.y, lineAngle+90);
+
+        // Setting the position
+        lineObject.position = mousePosition;
     }
 
 
@@ -47,14 +67,17 @@ public class PlanetPushing : MonoBehaviour
         {
 
             targetPlanet = Physics2D.OverlapPoint(mousePosition);
+            if (targetPlanet != null)
+            {
+
+                lineObject.gameObject.SetActive(true);
+                PositionArrow(mousePosition);
+            }
         } else if (leftMousePressed && leftMousePressedLastFrame)
         {
 
             if (targetPlanet != null)
-            {
-
-                //TODO: draw arrow
-            }
+                PositionArrow(mousePosition);
         } else if (!leftMousePressed && leftMousePressedLastFrame)
         {
 
@@ -67,6 +90,8 @@ public class PlanetPushing : MonoBehaviour
                 targetPlanet.GetComponent<PlanetController>().playerAcceleration = force;
                 targetPlanet = null;
             }
+
+            lineObject.gameObject.SetActive(false);
         }
 
         leftMousePressedLastFrame = leftMousePressed;
