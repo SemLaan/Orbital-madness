@@ -21,7 +21,7 @@ public class PlanetColission : MonoBehaviour
     private Timer timer;
 
     private int timeOfExplosion;
-    private Collider2D collider;
+    private new Collider2D collider;
 
     private void Start()
     {
