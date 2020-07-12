@@ -28,6 +28,12 @@ public class SceneSwitcher : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
     }
 
+    public void nextLevel()
+    {
+        soundManager.PlaySingle(selectSound);
+        SceneManager.LoadScene(restartFunction.previousIndex + 1);
+    }
+
     public void Update()
     {
         if (runOnce == false)

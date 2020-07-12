@@ -20,8 +20,6 @@ public class PlanetPushing : MonoBehaviour
     private SoundManager soundManager;
     [SerializeField] private AudioClip pushSound;
 
-    [SerializeField] private float xmin, xmax, ymin, ymax;
-
 
     private void Awake()
     {
@@ -106,14 +104,6 @@ public class PlanetPushing : MonoBehaviour
         leftMousePressedLastFrame = leftMousePressed;
         rightMousePressedLastFrame = rightMousePressed;
         mousePositionLastFrame = mousePosition;
-    }
-
-
-    void OnDrawGizmosSelected()
-    {
-        // Draw a semitransparent blue cube at the transforms position
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(transform.position, new Vector2((Mathf.Abs(xmin))+xmax,(Mathf.Abs(ymin))+ymax));
     }
 
 }

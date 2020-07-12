@@ -21,4 +21,11 @@ public class PanningCap : MonoBehaviour
         if (transform.position.y < ymin)
             transform.position = new Vector2(transform.position.x, ymin);
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(255, 0, 0, 0.2f);
+        Gizmos.DrawCube(new Vector2((xmin + xmax) / 2, (ymin + ymax) / 2), new Vector2(xmax - xmin, ymax - ymin));
+    }
+
 }

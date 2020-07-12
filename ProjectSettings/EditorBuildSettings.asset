@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Beefy scenes/GameOver.unity
     guid: 0fff9a72bff441a4a93c0d85db3829e1
   - enabled: 1
+    path: Assets/Scenes/Beefy scenes/WinningScreen.unity
+    guid: ad866a0c0d2f8c54d8e9eb984cbea19e
+  - enabled: 1
     path: Assets/Scenes/Beefy scenes/BeefyPlanetScene.unity
     guid: 94adb41b483136c4ca975c438ce419aa
+  - enabled: 1
+    path: Assets/Scenes/Beefy scenes/beef.unity
+    guid: e3abae360bae42742b37cda36a3194f6
   m_configObjects: {}
