@@ -7,7 +7,7 @@ public class PlanetController : MonoBehaviour
 
     [SerializeField] private Vector2 initialVelocityDirection = Vector2.one;
     [SerializeField] private float initialVelocityMagnitude = 1;
-    [SerializeField] private bool immovable = false;
+    public bool immovable = false;
     public float mass;
 
     [HideInInspector] public Vector2 playerAcceleration;
