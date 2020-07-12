@@ -9,6 +9,7 @@ TagManager:
   - SoundManager
   - tutorialcard
   - Timer
+  - Donut
   layers:
   - Default
   - TransparentFX

@@ -75,5 +75,24 @@ public class PlanetColission : MonoBehaviour
             collider.enabled = false;
             controller.immovable = true;
         }
+
+        if (collision.gameObject.tag == "Donut")
+        {
+            timeOfExplosion = (int)timer.timeLeft;
+            spriteRenderer.enabled = false;
+
+            Instantiate(explosion, transform.position, Quaternion.identity, transform);
+
+            if (soundManager != null)
+                soundManager.PlaySingle(collisionSound);
+
+            if (restartManager != null)
+                resetter.getCurrentIndex();
+
+            countDown = true;
+            collider.enabled = false;
+            controller.immovable = true;
+        }
+
     }
 }
