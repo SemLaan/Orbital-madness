@@ -17,10 +17,16 @@ public class PlanetPushing : MonoBehaviour
     private Collider2D targetPlanet;
     private new Transform camera;
 
+    private SoundManager soundManager;
+    [SerializeField] private AudioClip pushSound;
+
+    [SerializeField] private float xmin, xmax, ymin, ymax;
 
 
     private void Awake()
     {
+        if(GameObject.FindGameObjectWithTag("SoundManager") != null)
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").transform.GetComponent<SoundManager>();
 
         camera = Camera.main.transform;
         controls = new Controls();
@@ -89,6 +95,9 @@ public class PlanetPushing : MonoBehaviour
 
                 targetPlanet.GetComponent<PlanetController>().playerAcceleration = force;
                 targetPlanet = null;
+
+                if(soundManager != null)
+                    soundManager.PlaySingle(pushSound);
             }
 
             lineObject.gameObject.SetActive(false);
@@ -98,4 +107,13 @@ public class PlanetPushing : MonoBehaviour
         rightMousePressedLastFrame = rightMousePressed;
         mousePositionLastFrame = mousePosition;
     }
+
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a semitransparent blue cube at the transforms position
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawCube(transform.position, new Vector2((Mathf.Abs(xmin))+xmax,(Mathf.Abs(ymin))+ymax));
+    }
+
 }
