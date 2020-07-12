@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Beefy scenes/Tutorial.unity
     guid: e3abae360bae42742b37cda36a3194f6
   - enabled: 1
-    path: Assets/Scenes/Beefy scenes/BeefyPlanetScene.unity
+    path: Assets/Scenes/Beefy scenes/Level1.unity
     guid: 94adb41b483136c4ca975c438ce419aa
   m_configObjects: {}
