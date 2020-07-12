@@ -11,7 +11,7 @@ public class SceneSwitcher : MonoBehaviour
     private RestartScript restartFunction;
     private bool runOnce = false;
 
-    [SerializeField] private AudioClip selectSound;
+    [SerializeField] private AudioClip selectSound = null;
     private SoundManager soundManager;
 
     public void Start()

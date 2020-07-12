@@ -18,9 +18,9 @@ public class PlanetPushing : MonoBehaviour
     private new Transform camera;
 
     private SoundManager soundManager;
-    [SerializeField] private AudioClip pushSound;
+    [SerializeField] private AudioClip pushSound = null;
 
-    [SerializeField] private float xmin, xmax, ymin, ymax;
+    [SerializeField] private float xmin=0, xmax=0, ymin=0, ymax=0;
 
 
     private void Awake()

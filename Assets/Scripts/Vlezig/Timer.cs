@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public float timeLeft = 30;
-    [SerializeField] private GameObject text;
+    [SerializeField] private GameObject text = null;
     private int displayTime;
 
     void Update()
