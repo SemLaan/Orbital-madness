@@ -8,6 +8,7 @@ TagManager:
   - Planet
   - SoundManager
   - tutorialcard
+  - Timer
   layers:
   - Default
   - TransparentFX
