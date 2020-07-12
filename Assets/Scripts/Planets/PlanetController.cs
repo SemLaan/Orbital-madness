@@ -37,7 +37,7 @@ public class PlanetController : MonoBehaviour
 
             Vector2 forceDirection = (planet.position - transform.position).normalized;
             float sqrDistance = (planet.position - transform.position).sqrMagnitude;
-            acceleration += forceDirection * gravitationalConstant * (planet.mass * mass) / sqrDistance;
+            acceleration += forceDirection * gravitationalConstant * planet.mass / sqrDistance;
         }
 
         return acceleration;
