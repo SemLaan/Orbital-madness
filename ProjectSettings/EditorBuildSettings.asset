@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Beefy scenes/GameOver.unity
     guid: 0fff9a72bff441a4a93c0d85db3829e1
   - enabled: 1
-    path: Assets/Scenes/Beefy scenes/PlanetsScene.unity
-    guid: f5449f10bab08884794bfaad348d9a03
-  - enabled: 1
-    path: Assets/Scenes/Beefy scenes/playerInteractionScene.unity
-    guid: 30bb7c44c48766f4b8c4aebe67881485
+    path: Assets/Scenes/Beefy scenes/BeefyPlanetScene.unity
+    guid: 94adb41b483136c4ca975c438ce419aa
   m_configObjects: {}
