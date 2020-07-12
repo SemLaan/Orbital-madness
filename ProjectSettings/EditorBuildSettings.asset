@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Beefy scenes/TitleScreen.unity
     guid: 1dd580e64d8832c4ca284569d0f9d108
   - enabled: 1
+    path: Assets/Scenes/Beefy scenes/GameOver.unity
+    guid: 0fff9a72bff441a4a93c0d85db3829e1
+  - enabled: 1
     path: Assets/Scenes/Beefy scenes/PlanetsScene.unity
     guid: f5449f10bab08884794bfaad348d9a03
   - enabled: 1
