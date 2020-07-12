@@ -80,6 +80,10 @@ public class PlanetPushing : MonoBehaviour
 
                 targetPlanet.GetComponent<TutorialCard>().Finish();
                 targetPlanet = null;
+            } else if (targetPlanet.GetComponent<PlanetController>().immovable)
+            {
+
+                targetPlanet = null;
             } else
             {
 
