@@ -9,7 +9,6 @@ public class PlanetPushing : MonoBehaviour
     [SerializeField] private float playerForce = 1;
     [SerializeField] private Transform environmentParentObject = null;
     [SerializeField] private Transform lineObject = null;
-    [SerializeField] private SolarSystemSimulator sim;
 
     private Controls controls;
     private bool leftMousePressedLastFrame = false;
@@ -28,7 +27,6 @@ public class PlanetPushing : MonoBehaviour
         if(GameObject.FindGameObjectWithTag("SoundManager") != null)
             soundManager = GameObject.FindGameObjectWithTag("SoundManager").transform.GetComponent<SoundManager>();
 
-        sim = FindObjectOfType<SolarSystemSimulator>();
         camera = Camera.main.transform;
         controls = new Controls();
         controls.Enable();
@@ -99,9 +97,7 @@ public class PlanetPushing : MonoBehaviour
             {
 
                 PositionArrow(mousePosition);
-                Vector2 force = (Vector2)targetPlanet.transform.position - mousePosition;
-                force *= playerForce;
-                sim.Simulate(targetPlanet.gameObject, force);
+                
             }
         } else if (!leftMousePressed && leftMousePressedLastFrame)
         {
