@@ -11,7 +11,7 @@ public class PlanetController : MonoBehaviour
     public float mass;
 
     [HideInInspector] public Vector2 playerAcceleration;
-    private Vector2 velocity;
+    [HideInInspector] public Vector2 velocity;
 
 
 
@@ -22,11 +22,12 @@ public class PlanetController : MonoBehaviour
     }
 
 
-    public Vector3 CalculateAcceleration(List<PlanetData> planetLocations, float gravitationalConstant)
+    public Vector3 CalculateAcceleration(List<PlanetData> planetLocations, float gravitationalConstant, float bx=0, float by=0)
     {
 
         Vector2 acceleration = Vector2.zero;
         acceleration += playerAcceleration;
+        acceleration += new Vector2(bx, by);
         playerAcceleration = Vector2.zero;
 
         foreach (PlanetData planet in planetLocations)
