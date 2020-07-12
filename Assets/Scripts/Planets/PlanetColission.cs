@@ -9,7 +9,7 @@ public class PlanetColission : MonoBehaviour
     private RestartScript resetter;
     private int gameOverIndex = 1;
     private SoundManager soundManager;
-    [SerializeField] private AudioClip collisionSound;
+    [SerializeField] private AudioClip collisionSound = null;
 
 
     private void Start()
@@ -39,5 +39,4 @@ public class PlanetColission : MonoBehaviour
             SceneManager.LoadScene(gameOverIndex);
         }
     }
-
 }

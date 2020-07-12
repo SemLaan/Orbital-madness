@@ -18,7 +18,8 @@ public class PlanetPushing : MonoBehaviour
     private new Transform camera;
 
     private SoundManager soundManager;
-    [SerializeField] private AudioClip pushSound;
+    [SerializeField] private AudioClip pushSound = null;
+
 
 
     private void Awake()
@@ -71,7 +72,15 @@ public class PlanetPushing : MonoBehaviour
         {
 
             targetPlanet = Physics2D.OverlapPoint(mousePosition);
-            if (targetPlanet != null)
+
+            if (targetPlanet == null)
+                return;
+            else if (targetPlanet.tag == "tutorialcard")
+            {
+
+                targetPlanet.GetComponent<TutorialCard>().Finish();
+                targetPlanet = null;
+            } else
             {
 
                 lineObject.gameObject.SetActive(true);

@@ -7,6 +7,7 @@ TagManager:
   - LevelRestarter
   - Planet
   - SoundManager
+  - tutorialcard
   layers:
   - Default
   - TransparentFX
