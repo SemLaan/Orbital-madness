@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - LevelRestarter
+  - Planet
+  - SoundManager
+  - tutorialcard
+  - Timer
+  - Donut
   layers:
   - Default
   - TransparentFX
@@ -40,4 +46,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4234682431
+    locked: 0
+  - name: Planets
+    uniqueID: 3167687625
     locked: 0
