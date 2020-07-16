@@ -11,6 +11,7 @@ public class PlanetPushing : MonoBehaviour
     [SerializeField] private Transform lineObject = null;
     [Range(0, 1)]
     [SerializeField] private float bulletTimeSlowdown = 0;
+    [SerializeField] private float zoomAmount = 0;
 
     private Controls controls;
     private bool leftMousePressedLastFrame = false;
@@ -18,6 +19,7 @@ public class PlanetPushing : MonoBehaviour
     private Vector2 mousePositionLastFrame = Vector2.zero;
     private Collider2D targetPlanet;
     private new Transform camera;
+    private Camera cameraComponent;
 
     private SoundManager soundManager;
     [SerializeField] private AudioClip pushSound = null;
@@ -30,6 +32,7 @@ public class PlanetPushing : MonoBehaviour
             soundManager = GameObject.FindGameObjectWithTag("SoundManager").transform.GetComponent<SoundManager>();
 
         camera = Camera.main.transform;
+        cameraComponent = camera.GetComponent<Camera>();
         controls = new Controls();
         controls.Enable();
     }
@@ -59,6 +62,12 @@ public class PlanetPushing : MonoBehaviour
 
         // Camera zoom
         float scroll = controls.Gameplay.scrollWheel.ReadValue<float>();
+
+        if (scroll > 0)
+            cameraComponent.orthographicSize -= zoomAmount;
+        else if (scroll < 0)
+            cameraComponent.orthographicSize += zoomAmount;
+
         bool leftMousePressed = controls.Gameplay.leftMouse.ReadValue<float>() == 1;
         bool rightMousePressed = controls.Gameplay.rightMouse.ReadValue<float>() == 1;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(controls.Gameplay.mousePosition.ReadValue<Vector2>());

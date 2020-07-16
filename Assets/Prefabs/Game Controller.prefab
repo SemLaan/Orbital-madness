@@ -47,4 +47,5 @@ MonoBehaviour:
   environmentParentObject: {fileID: 0}
   lineObject: {fileID: 0}
   bulletTimeSlowdown: 0.254
+  zoomAmount: 0.31
   pushSound: {fileID: 0}
