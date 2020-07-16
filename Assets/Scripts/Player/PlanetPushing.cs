@@ -57,11 +57,13 @@ public class PlanetPushing : MonoBehaviour
     private void Update()
     {
 
+        // Camera zoom
+        float scroll = controls.Gameplay.scrollWheel.ReadValue<float>();
         bool leftMousePressed = controls.Gameplay.leftMouse.ReadValue<float>() == 1;
         bool rightMousePressed = controls.Gameplay.rightMouse.ReadValue<float>() == 1;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(controls.Gameplay.mousePosition.ReadValue<Vector2>());
 
-        // Player panning
+        // Camera panning
         if (rightMousePressed && rightMousePressedLastFrame)
         {
 
