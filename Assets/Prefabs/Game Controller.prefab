@@ -45,3 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerForce: 26.2
   environmentParentObject: {fileID: 0}
+  lineObject: {fileID: 0}
+  bulletTimeSlowdown: 0.254
+  pushSound: {fileID: 0}

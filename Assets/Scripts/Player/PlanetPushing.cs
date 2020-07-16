@@ -9,6 +9,8 @@ public class PlanetPushing : MonoBehaviour
     [SerializeField] private float playerForce = 1;
     [SerializeField] private Transform environmentParentObject = null;
     [SerializeField] private Transform lineObject = null;
+    [Range(0, 1)]
+    [SerializeField] private float bulletTimeSlowdown = 0;
 
     private Controls controls;
     private bool leftMousePressedLastFrame = false;
@@ -87,6 +89,9 @@ public class PlanetPushing : MonoBehaviour
             } else
             {
 
+                if (Time.timeScale != 0)
+                    Time.timeScale = bulletTimeSlowdown;
+
                 lineObject.gameObject.SetActive(true);
                 PositionArrow(mousePosition);
             }
@@ -100,6 +105,9 @@ public class PlanetPushing : MonoBehaviour
 
             if (targetPlanet != null)
             {
+
+                if (Time.timeScale != 0)
+                    Time.timeScale = 1;
 
                 Vector2 force = (Vector2)targetPlanet.transform.position - mousePosition;
                 force *= playerForce;
