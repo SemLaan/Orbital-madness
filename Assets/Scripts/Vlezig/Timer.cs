@@ -11,7 +11,7 @@ public class Timer : MonoBehaviour
     private int displayTime;
     private RestartScript restartManager = null;
     private SoundManager soundManager;
-    [SerializeField] private AudioClip victory;
+    [SerializeField] private AudioClip victory = null;
 
     private void Start()
     {

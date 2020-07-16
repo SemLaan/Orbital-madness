@@ -5,7 +5,7 @@ using UnityEngine;
 public class TutorialCard : MonoBehaviour
 {
     private SoundManager soundManager;
-    [SerializeField] private AudioClip next;
+    [SerializeField] private AudioClip next = null;
 
     private void Start()
     {

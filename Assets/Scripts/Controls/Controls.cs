@@ -41,6 +41,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""scrollWheel"",
+                    ""type"": ""Value"",
+                    ""id"": ""4d5cd6b1-9495-4f0e-9a43-71b476f99fa4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -76,6 +84,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""mousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2021874e-9b5a-4f71-b942-8c287d864dfc"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""scrollWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -87,6 +106,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_leftMouse = m_Gameplay.FindAction("leftMouse", throwIfNotFound: true);
         m_Gameplay_rightMouse = m_Gameplay.FindAction("rightMouse", throwIfNotFound: true);
         m_Gameplay_mousePosition = m_Gameplay.FindAction("mousePosition", throwIfNotFound: true);
+        m_Gameplay_scrollWheel = m_Gameplay.FindAction("scrollWheel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,6 +159,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_leftMouse;
     private readonly InputAction m_Gameplay_rightMouse;
     private readonly InputAction m_Gameplay_mousePosition;
+    private readonly InputAction m_Gameplay_scrollWheel;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -146,6 +167,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @leftMouse => m_Wrapper.m_Gameplay_leftMouse;
         public InputAction @rightMouse => m_Wrapper.m_Gameplay_rightMouse;
         public InputAction @mousePosition => m_Wrapper.m_Gameplay_mousePosition;
+        public InputAction @scrollWheel => m_Wrapper.m_Gameplay_scrollWheel;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -164,6 +186,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @mousePosition.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMousePosition;
                 @mousePosition.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMousePosition;
                 @mousePosition.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMousePosition;
+                @scrollWheel.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnScrollWheel;
+                @scrollWheel.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnScrollWheel;
+                @scrollWheel.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnScrollWheel;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -177,6 +202,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @mousePosition.started += instance.OnMousePosition;
                 @mousePosition.performed += instance.OnMousePosition;
                 @mousePosition.canceled += instance.OnMousePosition;
+                @scrollWheel.started += instance.OnScrollWheel;
+                @scrollWheel.performed += instance.OnScrollWheel;
+                @scrollWheel.canceled += instance.OnScrollWheel;
             }
         }
     }
@@ -186,5 +214,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnLeftMouse(InputAction.CallbackContext context);
         void OnRightMouse(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnScrollWheel(InputAction.CallbackContext context);
     }
 }
